@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { commands } from "../commands/commands";
 import UserInfo from "./integrate/UserInfo";
 
@@ -9,6 +9,7 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
   const [command, setCommand] = useState("");
   const [commandLists, setCommandLists] = useState<string[]>([]);
   const [result, setResult] = useState<string[]>([]);
+  const lastRef = useRef<HTMLDivElement>(null);
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     const result = commands(command);
@@ -20,13 +21,17 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
     });
     setCommand("");
   };
+
+  useEffect(() => {
+    lastRef.current?.scrollIntoView();
+  }, [commandLists]);
   return (
     <div className="bg-black overflow-auto">
       {result.length > 0 &&
         result.map((item, index) => (
           <>
             <div className="flex items-center py-1" key={index}>
-              <UserInfo />
+              <UserInfo lastRef={null} />
               <div>{commandLists[index]}</div>
             </div>
             <p dangerouslySetInnerHTML={{ __html: item }}></p>
@@ -34,7 +39,7 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
         ))}
 
       <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-center">
-        <UserInfo />
+        <UserInfo lastRef={lastRef} />
         <div className="flex md:block">
           <div className="md:hidden mr-2"> {">"} </div>
           <input
