@@ -9,7 +9,7 @@ const Welcome: React.FC = () => {
       </div>
       <div className="pb-10">
         ---------------------------------
-        <p>This is stil in development</p>
+        <p>This is still in development</p>
         ---------------------------------
       </div>
     </>
