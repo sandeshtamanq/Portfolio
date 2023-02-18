@@ -6,6 +6,15 @@
   * {
     @apply bg-gray-800 text-gray-400;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
 }
 
 /* .hide-scrollbar::-webkit-scrollbar {
@@ -29,7 +38,7 @@
 }
 
 .small-scrollbar::-webkit-scrollbar-thumb {
-  background: rgb(58, 57, 57);
+  background: rgb(187, 185, 185);
   border-radius: 10px;
 }
 

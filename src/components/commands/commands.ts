@@ -1,9 +1,6 @@
-import { help } from "./commandLists";
+import { about, contact, education, help, projects } from "./commandLists";
 
 export const commands = (command: string): string => {
-  const about = `
-    <div>Hello My name is Sandesh Tamang</div>
-  `;
   switch (command) {
     case "help":
       return help;
@@ -12,13 +9,13 @@ export const commands = (command: string): string => {
       return about;
 
     case "projects":
-      return "Ooops Nothing to show yet! Please check back later";
+      return projects;
 
     case "education":
-      return "Ooops Nothing to show yet! Please check back later";
+      return education;
 
     case "contact":
-      return "Ooops Nothing to show yet! Please check back later";
+      return contact;
 
     case "":
       return "";
