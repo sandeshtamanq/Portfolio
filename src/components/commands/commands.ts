@@ -21,6 +21,6 @@ export const commands = (command: string): string => {
       return "";
 
     default:
-      return "This command doesn't exist please type help";
+      return `'${command}' is not recognized as an internal command. Please type 'help' to view all the available commands`;
   }
 };

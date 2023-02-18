@@ -25,6 +25,12 @@ Commands available:<br>
       -My education
     </div>
   </div>
+  <div class="justify-between">
+    <div class=" text-green-500">clear:</div>  
+    <div class="ml-4">
+      -Clear the terminal
+    </div>
+  </div>
 </div>
 
 `;

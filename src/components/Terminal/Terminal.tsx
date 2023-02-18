@@ -12,6 +12,12 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
   const lastRef = useRef<HTMLDivElement>(null);
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    if (command === "clear") {
+      setResult([]);
+      setCommandLists([]);
+      setCommand("");
+      return;
+    }
     const result = commands(command);
     setResult((preVal: string[]) => {
       return [...preVal, result];
