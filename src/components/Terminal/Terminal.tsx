@@ -36,9 +36,12 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
       {result.length > 0 &&
         result.map((item, index) => (
           <>
-            <div className="flex items-center py-1" key={index}>
+            <div className="flex flex-col md:flex-row md:items-center py-1" key={index}>
               <UserInfo lastRef={null} />
-              <div>{commandLists[index]}</div>
+              <div className="flex items-center">
+                <div className="md:hidden">{">"}</div>
+                <div>{commandLists[index]}</div>
+              </div>
             </div>
             <p dangerouslySetInnerHTML={{ __html: item }}></p>
           </>
