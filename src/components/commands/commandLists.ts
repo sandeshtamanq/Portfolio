@@ -81,16 +81,32 @@ export const projects = `
   <div class="space-y-5">
     <h4>Here are some of projects i've worked on:</h4>
     <div>
-      <h5>Governemt Website Lists</h5>
+      <a href="https://nepali-government-website-lists.vercel.app/" target="_blank">Governemt Website Lists</a>
       <p>My mini project which shows the list of some of Nepal's government websites</p>
     </div>
     <div>
-      <h5>covid Tracker</h5>
+      <a href="https://sandeshtamanq.github.io/QR-Generator/" target="_blank">Qr code generator</a>
+      <p>My mini project which generates the qr code of entered websites</p>
+    </div>
+    <div>
+      <a href="https://react-ts-covidtracker.vercel.app/" target="_blank">covid Tracker</a>
       <p>Shows the covid-19 data of the world and lets you view the data according to country</p>
     </div>
     <div>
-      <h5>Portfolio</h5>
+      <a href="https://sandeshtmg.com.np/" target="_blank">Portfolio</a>
       <p>This terminal portfolio</p>
+    </div>
+    <div>
+      <a href="https://7th-sem-project-frontend.vercel.app/" target="_blank">Ecommerce</a>
+      <p>My college's 7th semester project. Did frontend(react) and backend(nestjs) both.</p>
+    </div>
+    <div>
+      <a href="https://frontend-self-delta.vercel.app/" target="_blank">Todo list</a>
+      <p>Another mini project with mern stack</p>
+    </div>
+    <div>
+      <a href="https://getinspire.org" target="_blank">Get Inspire</a>
+      <p>My project while I was doing internship for frontend developer</p>
     </div>
   </div>
 `;
