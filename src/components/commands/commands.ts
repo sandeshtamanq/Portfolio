@@ -1,6 +1,6 @@
-import { about, contact, education, help, projects } from "./commandLists";
+import { help, about, error, education, contact, projects } from "../../commands/commandList";
 
-export const commands = (command: string): string => {
+export const commands = (command: string): any => {
   switch (command) {
     case "help":
       return help;
@@ -17,10 +17,7 @@ export const commands = (command: string): string => {
     case "contact":
       return contact;
 
-    case "":
-      return "";
-
     default:
-      return `'${command}' is not recognized as an internal command. Please type 'help' to view all the available commands`;
+      return error;
   }
 };
