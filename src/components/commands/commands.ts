@@ -17,6 +17,9 @@ export const commands = (command: string): any => {
     case "contact":
       return contact;
 
+    case "go gui":
+      window.open("https://portfolio-gui-one.vercel.app/", "_blank");
+      return;
     default:
       return error;
   }

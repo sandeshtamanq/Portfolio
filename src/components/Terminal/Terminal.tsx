@@ -40,7 +40,7 @@ const Terminal: React.FC<terminalProps> = ({ inputRef }) => {
   return (
     <div className="bg-black overflow-auto">
       {result.length > 0 &&
-        result.map((item, index) => {
+        result?.map((item, index) => {
           return (
             <>
               <div className="flex flex-col md:flex-row md:items-center py-1" key={index}>
