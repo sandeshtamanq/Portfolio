@@ -1,27 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const ExperienceContent: React.FC = () => {
-  const experiences = [
-    {
-      title: "Senior Frontend Developer",
-      company: "Tech Innovators Inc.",
-      period: "Jan 2022 - Present",
-      responsibilities: [
-        "Lead a team of 5 developers in creating responsive web applications",
-        "Implemented new features using React and Next.js, improving user engagement by 30%",
-        "Optimized application performance, reducing load times by 40%",
-      ],
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Digital Solutions Ltd.",
-      period: "Jun 2019 - Dec 2021",
-      responsibilities: [
-        "Developed and maintained multiple client websites using the MERN stack",
-        "Collaborated with the design team to implement user-friendly interfaces",
-        "Integrated third-party APIs to enhance application functionality",
-      ],
-    },
-  ];
+  // const experiences = [
+  //   {
+  //     title: "Senior Frontend Developer",
+  //     company: "Tech Innovators Inc.",
+  //     period: "Jan 2022 - Present",
+  //     responsibilities: [
+  //       "Lead a team of 5 developers in creating responsive web applications",
+  //       "Implemented new features using React and Next.js, improving user engagement by 30%",
+  //       "Optimized application performance, reducing load times by 40%",
+  //     ],
+  //   },
+  //   {
+  //     title: "Full Stack Developer",
+  //     company: "Digital Solutions Ltd.",
+  //     period: "Jun 2019 - Dec 2021",
+  //     responsibilities: [
+  //       "Developed and maintained multiple client websites using the MERN stack",
+  //       "Collaborated with the design team to implement user-friendly interfaces",
+  //       "Integrated third-party APIs to enhance application functionality",
+  //     ],
+  //   },
+  // ];
 
   return (
     <div className="text-black">

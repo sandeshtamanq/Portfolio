@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { motion } from "framer-motion";
@@ -30,7 +29,7 @@ export function Header({
         <ul className="flex space-x-4">
           {["about", "projects", "contact"].map((item, index) => (
             <motion.li
-              key={item}
+              key={index}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

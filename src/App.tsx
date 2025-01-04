@@ -58,7 +58,6 @@ export default function Home() {
         {openWindows.map((windowId) => (
           <Window
             key={windowId}
-            id={windowId}
             title={windowId.charAt(0).toUpperCase() + windowId.slice(1)}
             isActive={activeWindow === windowId}
             isMinimized={minimizedWindows.includes(windowId)}

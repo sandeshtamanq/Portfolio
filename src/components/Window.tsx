@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ReactNode, useState, useRef, useEffect } from "react";
+import { ReactNode, useState, useRef, useEffect, useCallback } from "react";
 import { X, Minus, Maximize, Minimize } from "lucide-react";
 
 interface WindowProps {
-  id: string;
   title: string;
   children: ReactNode;
   isActive: boolean;
@@ -14,7 +12,6 @@ interface WindowProps {
 }
 
 const Window: React.FC<WindowProps> = ({
-  id,
   title,
   children,
   isActive,
@@ -51,13 +48,16 @@ const Window: React.FC<WindowProps> = ({
     }
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (isDragging && !isFullscreen) {
-      const newX = e.clientX - dragStart.x;
-      const newY = e.clientY - dragStart.y;
-      setPosition({ x: newX, y: newY });
-    }
-  };
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (isDragging && !isFullscreen) {
+        const newX = e.clientX - dragStart.x;
+        const newY = e.clientY - dragStart.y;
+        setPosition({ x: newX, y: newY });
+      }
+    },
+    [isDragging, isFullscreen, dragStart]
+  );
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -70,7 +70,7 @@ const Window: React.FC<WindowProps> = ({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, dragStart]);
+  }, [isDragging, isFullscreen, position, dragStart, handleMouseMove]);
 
   if (isMinimized) {
     return null;

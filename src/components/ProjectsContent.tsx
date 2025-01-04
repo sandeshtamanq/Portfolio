@@ -1,19 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const ProjectsContent: React.FC = () => {
-  const projects = [
-    {
-      name: "E-commerce Platform",
-      description: "A full-stack online shopping platform",
-    },
-    {
-      name: "Task Manager",
-      description: "A productivity app for managing daily tasks",
-    },
-    {
-      name: "Portfolio Website",
-      description: "This desktop-like portfolio website",
-    },
-  ];
+  // const projects = [
+  //   {
+  //     name: "E-commerce Platform",
+  //     description: "A full-stack online shopping platform",
+  //   },
+  //   {
+  //     name: "Task Manager",
+  //     description: "A productivity app for managing daily tasks",
+  //   },
+  //   {
+  //     name: "Portfolio Website",
+  //     description: "This desktop-like portfolio website",
+  //   },
+  // ];
 
   return (
     <div className="text-black">
