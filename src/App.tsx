@@ -1,41 +1,97 @@
-import { LegacyRef, useEffect, useRef } from "react";
-import Terminal from "./components/Terminal/Terminal";
-import TitleBar from "./components/TitleBar/TitleBar";
-import Welcome from "./components/Welcome/Welcome";
+"use client";
 
-function App() {
-  const ascArt = `
-   _____           _         _      _____
-  |   __|___ ___ _| |___ ___| |_   |_   _|___ _____ ___ ___ ___
-  |__   | .'|   | . | -_|_ -|   |    | | | .'|     | .'|   | . |
-  |_____|__,|_|_|___|___|___|_|_|    |_| |__,|_|_|_|__,|_|_|_  |
-                                                           |___|
-  `;
+import { useState } from "react";
+import Desktop from "./components/Desktop";
+import Taskbar from "./components/Taskbar";
+import Window from "./components/Window";
+import Terminal from "./components/Terminal";
+import ProjectsContent from "./components/ProjectsContent";
+import CVContent from "./components/CVContent";
+import ExperienceContent from "./components/ExperienceContent";
+import StartMenu from "./components/StartMenu";
 
-  const mobAscArt = `      
- +-++-++-++-++-++-++-+
- |S||a||n||d||e||s||h|
- +-++-++-++-++-++-++-+`;
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+export default function Home() {
+  const [openWindows, setOpenWindows] = useState<string[]>([]);
+  const [activeWindow, setActiveWindow] = useState<string | null>(null);
+  const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+
+  const toggleWindow = (id: string) => {
+    if (openWindows.includes(id)) {
+      if (minimizedWindows.includes(id)) {
+        setMinimizedWindows(
+          minimizedWindows.filter((windowId) => windowId !== id)
+        );
+        setActiveWindow(id);
+      } else {
+        setOpenWindows(openWindows.filter((windowId) => windowId !== id));
+        setActiveWindow(openWindows[openWindows.length - 2] || null);
+      }
+    } else {
+      setOpenWindows([...openWindows, id]);
+      setActiveWindow(id);
+    }
+  };
+
+  const minimizeWindow = (id: string) => {
+    if (minimizedWindows.includes(id)) {
+      setMinimizedWindows(
+        minimizedWindows.filter((windowId) => windowId !== id)
+      );
+      setActiveWindow(id);
+    } else {
+      setMinimizedWindows([...minimizedWindows, id]);
+      setActiveWindow(openWindows[openWindows.length - 2] || null);
+    }
+  };
+
+  const windowContents: { [key: string]: React.ReactNode } = {
+    projects: <ProjectsContent />,
+    cv: <CVContent />,
+    experience: <ExperienceContent />,
+    terminal: <Terminal />,
+  };
+
   return (
-    <div className="">
-      <div className="p-5 font-ibmPlex md:h-[53rem] rounded-md" ref={terminalRef}>
-        <div onClick={() => inputRef.current?.focus()}>
-          <TitleBar />
-          <div className="p-4 border small-scrollbar border-gray-900 md:max-h-[52rem] overflow-auto rounded-b-lg">
-            <pre className="hidden md:block">{ascArt}</pre>
-            <pre className="md:hidden">{mobAscArt}</pre>
-            <Welcome />
-            <Terminal inputRef={inputRef} />
-          </div>
-        </div>
-      </div>
+    <div className="h-screen bg-[url('/windows-11-background.jpg')] bg-cover bg-center overflow-hidden flex flex-col">
+      <Desktop toggleWindow={toggleWindow}>
+        {openWindows.map((windowId) => (
+          <Window
+            key={windowId}
+            id={windowId}
+            title={windowId.charAt(0).toUpperCase() + windowId.slice(1)}
+            isActive={activeWindow === windowId}
+            isMinimized={minimizedWindows.includes(windowId)}
+            onClose={() => toggleWindow(windowId)}
+            onFocus={() => setActiveWindow(windowId)}
+            onMinimize={() => minimizeWindow(windowId)}
+          >
+            {windowContents[windowId]}
+          </Window>
+        ))}
+      </Desktop>
+      <Taskbar
+        openWindows={openWindows}
+        activeWindow={activeWindow}
+        minimizedWindows={minimizedWindows}
+        onWindowClick={(id) => {
+          if (minimizedWindows.includes(id)) {
+            minimizeWindow(id);
+          } else {
+            setActiveWindow(id);
+          }
+        }}
+        isStartMenuOpen={isStartMenuOpen}
+        toggleStartMenu={() => setIsStartMenuOpen(!isStartMenuOpen)}
+      />
+      {isStartMenuOpen && (
+        <StartMenu
+          onAppClick={(appId) => {
+            toggleWindow(appId);
+            setIsStartMenuOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }
-
-export default App;
