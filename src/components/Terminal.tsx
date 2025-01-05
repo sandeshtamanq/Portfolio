@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Terminal: React.FC = () => {
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<string[]>([
-    "Welcome to the portfolio terminal!",
-    'Type "help" for available commands.',
-  ]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [output, setOutput] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -13,11 +12,14 @@ const Terminal: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setInput("");
-    return;
     setOutput([...output, `$ ${input}`]);
     processCommand(input);
+    setInput("");
   };
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const processCommand = (command: string) => {
     switch (command.toLowerCase()) {
@@ -27,21 +29,24 @@ const Terminal: React.FC = () => {
       case "about":
         setOutput([
           ...output,
-          "I am a passionate web developer with experience in React and Next.js.",
+          "I am a passionate web developer with experience in React and Node.js",
         ]);
         break;
       case "skills":
         setOutput([
           ...output,
-          "My skills include: JavaScript, TypeScript, React, Next.js, Node.js, and more.",
+          "My skills include:  TypeScript, React, Asp.net, Node.js, and more.",
         ]);
         break;
       case "contact":
         setOutput([
           ...output,
-          "Email: your.email@example.com",
-          "GitHub: github.com/yourusername",
+          "Email: lamasandesh400@gmail.com",
+          "GitHub: github.com/sandeshtamanq",
         ]);
+        break;
+      case "clear":
+        setOutput([]);
         break;
       default:
         setOutput([...output, `Command not found: ${command}`]);
@@ -49,24 +54,32 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-green-400 p-4 font-mono h-full">
-      {/* <div className="mb-4">
-        {output.map((line, index) => (
-          <div key={index}>{line}</div>
-        ))}
-      </div> */}
-      <form onSubmit={handleSubmit}>
-        <div className="flex">
-          <span className="mr-2">$</span>
-          <input
-            type="text"
-            value={input}
-            onChange={handleInputChange}
-            className="bg-transparent flex-grow focus:outline-none"
-            autoFocus
-          />
+    <div
+      onClick={() => inputRef.current?.focus()}
+      className="bg-black text-green-400  font-mono h-full"
+    >
+      <div className="bg-black w-full p-4 rounded">
+        <p>Welcome to the portfolio terminal!</p>
+        <p>Type "help" for available commands.</p>
+        <div className="mb-4">
+          {output.map((line, index) => (
+            <div key={index}>{line}</div>
+          ))}
         </div>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="flex">
+            <span className="mr-2">$</span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={handleInputChange}
+              className="bg-transparent flex-grow focus:outline-none"
+              autoFocus
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

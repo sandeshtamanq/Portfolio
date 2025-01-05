@@ -1,32 +1,43 @@
 const ExperienceContent: React.FC = () => {
-  // const experiences = [
-  //   {
-  //     title: "Senior Frontend Developer",
-  //     company: "Tech Innovators Inc.",
-  //     period: "Jan 2022 - Present",
-  //     responsibilities: [
-  //       "Lead a team of 5 developers in creating responsive web applications",
-  //       "Implemented new features using React and Next.js, improving user engagement by 30%",
-  //       "Optimized application performance, reducing load times by 40%",
-  //     ],
-  //   },
-  //   {
-  //     title: "Full Stack Developer",
-  //     company: "Digital Solutions Ltd.",
-  //     period: "Jun 2019 - Dec 2021",
-  //     responsibilities: [
-  //       "Developed and maintained multiple client websites using the MERN stack",
-  //       "Collaborated with the design team to implement user-friendly interfaces",
-  //       "Integrated third-party APIs to enhance application functionality",
-  //     ],
-  //   },
-  // ];
+  const experiences = [
+    {
+      title: "Frontend Developer [Sep 2021 - Oct 2022]",
+      company: "Intelzy Softwares Pvt. Ltd.",
+      period: "Sep 2021 - Oct 2022",
+      responsibilities: [
+        "Implemented state management using Redux , effectively managing complex application states and enhancing user interactions.",
+        "Collaborated with cross-functional teams to integrate backend APIs, ensuring seamless data flow and optimal user experiences.",
+        "Optimized application performance, reducing load times by 40%",
+      ],
+    },
+    {
+      title: "Full Stack Developer",
+      company: "Intopros Technologies Pvt. Ltd.",
+      period: "May 2023 - Sep 2023",
+      responsibilities: [
+        "Developed RESTful APIs using Nestjs, providing a foundation for efficient data exchange between the frontend and the server.",
+        "Collaborated with the design team to implement user-friendly interfaces",
+        "Optimized database queries and schema design to enhance overall system performance and reduce response times.",
+      ],
+    },
+
+    {
+      title: "Full Stack Developer",
+      company: "Justchek Pvt. Ltd.",
+      period: "Jun 2023 - Sep 2024",
+      responsibilities: [
+        "Contributed to the development of a SaaS product by implementing key backend features, including data validation and error handling, ensuring a stable and reliable architecture.",
+        "Implemented concurrency management in a project by leveraging database locking mechanisms and Redis-based distributed locks to ensure data consistency and prevent race conditions.",
+        "Designed and implemented task scheduling and management features, including reminder functionality via cron scheduling.",
+      ],
+    },
+  ];
 
   return (
     <div className="text-black">
       <h2 className="text-2xl font-bold mb-4">My Experience</h2>
       <div className="space-y-6">
-        {/* {experiences.map((exp, index) => (
+        {experiences.map((exp, index) => (
           <div key={index} className="bg-gray-100 p-4 rounded-lg">
             <h3 className="text-xl font-semibold">{exp.title}</h3>
             <p className="text-gray-600">
@@ -38,7 +49,7 @@ const ExperienceContent: React.FC = () => {
               ))}
             </ul>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );
